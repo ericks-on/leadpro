@@ -2,6 +2,7 @@
 
 import { addProduct } from "@/app/lib/actions";
 import { useActionState } from "react";
+import clsx from 'clsx';
 
 export default function ProductsForm() {
     const [errorMessage, formAction, isPending] = useActionState(
@@ -28,8 +29,16 @@ export default function ProductsForm() {
                         <input className="w-full px-4 py-2 mt-2 border rounded-lg" type="number" id="price" name="price" />
                     </div>
                     <div className="flex justify-center items-center h-full">
-                        <button className=" px-2 py-2 mt-2 md:m-0 text-white bg-blue-500 rounded-lg"
-                            aria-disabled={isPending}>Add Product
+                        <button className={clsx(
+                            " px-2 py-2 mt-2 md:m-0 text-white bg-blue-500 rounded-lg",
+                            isPending && 'opacity-50 cursor-not-allowed'
+                        )}
+                            aria-disabled={isPending}>
+                            {isPending ? (
+                            <span className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span>
+                            ) : (
+                            'Add Product'
+                            )}
                         </button>
                     </div>
                 </div>

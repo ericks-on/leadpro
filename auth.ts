@@ -5,12 +5,16 @@ import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import { promises as fs } from 'fs';
+import { sql } from '@vercel/postgres';
 
 async function getUser(username: string): Promise<User | undefined> {
     try {
-        const users = await fs.readFile('users.json', 'utf-8');
-        const user = JSON.parse(users).find((user: User) => user.username === username);
-        return user;
+        const result = await sql<User>`
+            SELECT * FROM users WHERE username = ${username}
+        `;
+
+        // If a user is found, return the first result
+        return result.rows[0];
     } catch (error) {
         console.error('Failed to fetch user:', error);
         throw new Error('Failed to fetch user.');

@@ -5,11 +5,13 @@ import { redirect } from "next/navigation";
 import { promises as fs } from "fs";
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-
+import { sql } from "@vercel/postgres"
+import { v4 as uuidv4 } from 'uuid';
+import { Product } from "./definitions";
 
 export async function getProducts() {
-    let data = await fs.readFile('app/lib/products.json', 'utf-8');
-    return JSON.parse(data);
+    let data = await sql<Product>`SELECT * FROM products`;
+    return data.rows as Product[];
 }
 
 export async function addProduct(
@@ -26,37 +28,33 @@ export async function addProduct(
         }
 
         const product = {
+            id: uuidv4(),
             name,
             quantity: parseInt(quantity),
             price: parseInt(price),
         };
 
-        // Read the current data from the JSON file
-        const data = await fs.readFile('app/lib/products.json', 'utf-8');
-        const products = JSON.parse(data);
-
-        // Add the new product to the array
-        products.push(product);
-
-        // Write the updated data back to the JSON file
-        const newData = JSON.stringify(products, null, 2); // `null, 2` for pretty-printing
-        await fs.writeFile('app/lib/products.json', newData);
+        // Insert the new product into the database
+        await sql`
+            INSERT INTO products (id, name, quantity, price)
+            VALUES (${product.id}, ${product.name}, ${product.quantity}, ${product.price})
+        `;
 
         // Revalidate the path and redirect
-        // revalidatePath('/products');
-        // redirect('/products');
+        revalidatePath('/products');
+        redirect('/products');
     
 }
 
-export async function deleteProduct(index: number) {
-    let data = await fs.readFile('app/lib/products.json', 'utf-8');
-    let products = JSON.parse(data);
-    products.splice(index, 1);
-    let newData = JSON.stringify(products);
-    await fs.writeFile('app/lib/products.json', newData);
+export async function deleteProduct(id: string) {
+    // Delete the product from the database
+    await sql`
+        DELETE FROM products
+        WHERE id = ${id}
+    `;
 
-    revalidatePath('/products')
-    redirect('/products')
+    revalidatePath('/products');
+    redirect('/products');
 }
 
 export async function authenticate(
