@@ -11,7 +11,11 @@ export const authConfig = {
             const isLoggedIn = !!auth?.user;
             const isOnProducts = nextUrl.pathname.startsWith('/products');
             const isOnWelcome = nextUrl.pathname.startsWith('/welcome');
-            if (isOnProducts) {
+            const isOnKitchen = nextUrl.pathname.startsWith('/kitchen');
+            const isOnSales = nextUrl.pathname.startsWith('/sales');
+            const isOnSupply = nextUrl.pathname.startsWith('/supplies');
+            const isOnInventory = nextUrl.pathname.startsWith('/inventory');
+            if (isOnProducts || isOnKitchen || isOnSales || isOnSupply || isOnInventory) {
                 if (isLoggedIn) return true;
                 return Response.redirect(new URL('/', nextUrl)); // Redirect unauthenticated users to login page
             // }

@@ -1,14 +1,15 @@
 'use client'
 import { useState } from "react";
-import { deleteProduct } from "../lib/actions";
 
-export default function DeleteButton({ id }: { id: string }) {
+export default function DeleteButton(
+    { id, deleteFunction }: { id: string, deleteFunction: (id: string) => void }
+) {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const handleDelete = async () => {
         setIsDeleting(true);
         try {
-            await deleteProduct(id);
+            await deleteFunction(id);
             setIsDeleting(false); // Trigger a refresh or handle UI update
         } catch (error) {
             console.error('Failed to delete product:', error);
