@@ -1,16 +1,20 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 export default function Layout({
     children,
 }:{
     children: React.ReactNode;
-}) {
+    }) {
     return (
             <div>
-                <div className='flex flex-row'>
+                <div className='flex flex-row basis-1/5'>
                     <aside className="w-64 h-screen bg-gray-800 text-white flex flex-col items-start py-8 px-6 border-r border-gray-700">
                         <div className="text-xl font-bold mb-6 px-4">LeadPro Bakers</div>
-                    <nav className="flex flex-col w-full">
+                    <nav className={clsx(
+                        "md:flex flex-col w-full",
+                        {showMenu :'fixed width-full h-screen'}
+                    )}>
                             <Link href="/welcome" className="w-full mb-3 text-lg font-semibold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">
                                 Home
                             </Link>
@@ -28,7 +32,7 @@ export default function Layout({
                             </Link>
                         </nav>
                     </aside>
-                    <div>
+                    <div className="basis-4/5">
                         {children}
                     </div>
                 </div>
