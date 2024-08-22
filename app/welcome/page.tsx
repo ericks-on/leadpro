@@ -33,7 +33,7 @@ export default async function Welcome() {
                     <div className="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
                         <div className="relative w-full h-48">
                             <Image
-                                src={"/images/sale.jpg"}
+                                src="/images/sale.jpg"
                                 alt="Bakery Sales"
                                 layout="fill"
                                 objectFit="cover"
@@ -57,8 +57,8 @@ export default async function Welcome() {
                             <Image
                                 src="/images/kit.jpg"
                                 alt="Kitchen Inventory"
-                                width={500}
-                                height={500}
+                                layout='fill'
+                                objectFit='cover'
                                 className="rounded-t-lg"
                             />
                         </div>

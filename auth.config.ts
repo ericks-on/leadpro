@@ -15,6 +15,15 @@ export const authConfig = {
             const isOnSales = nextUrl.pathname.startsWith('/sales');
             const isOnSupply = nextUrl.pathname.startsWith('/supplies');
             const isOnInventory = nextUrl.pathname.startsWith('/inventory');
+
+
+            // Check if the request is for a static asset (e.g., images, CSS, JS)
+            const isAssetRequest = /\.(jpg|jpeg|png|gif|svg|css|js|ico|woff2?)$/.test(nextUrl.pathname);
+
+            if (isAssetRequest) {
+                return true; // Allow access to static assets
+            }
+            
             if (isOnProducts || isOnKitchen || isOnSales || isOnSupply || isOnInventory) {
                 if (isLoggedIn) return true;
                 return Response.redirect(new URL('/', nextUrl)); // Redirect unauthenticated users to login page
