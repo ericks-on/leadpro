@@ -21,7 +21,7 @@ export default function Layout({
                         <nav className="flex flex-row md:flex-col w-full gap-2">
                             <Link href="/welcome" className="w-full mb-3 flex gap-2 text-lg font-semibold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">
                                 <HomeIcon className="w-6 h-6 mr-2" />
-                                <span className="hidden md:block">Products</span>
+                                <span className="hidden md:block">Home</span>
                                 
                             </Link>
                             <Link href="/inventory/products" className="w-full mb-3 flex gap-2 text-lg font-semibold py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">
