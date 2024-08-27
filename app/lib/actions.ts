@@ -41,8 +41,8 @@ export async function addProduct(
         `;
 
         // Revalidate the path and redirect
-        revalidatePath('/products');
-        redirect('/products');
+        revalidatePath('/inventory/products');
+        redirect('/inventory/products');
     
 }
 
@@ -53,8 +53,8 @@ export async function deleteProduct(id: string) {
         WHERE id = ${id}
     `;
 
-    revalidatePath('/products');
-    redirect('/products');
+    revalidatePath('/inventory/products');
+    redirect('/inventory/products');
 }
 
 export async function authenticate(
@@ -88,8 +88,8 @@ export async function deleteKitchen(id: string) {
         WHERE id = ${id}
     `;
 
-    revalidatePath('/kitchen');
-    redirect('/kitchen');
+    revalidatePath('/inventory/kitchen');
+    redirect('/inventory/kitchen');
 }
 
 export async function getKitchen() {
@@ -124,8 +124,8 @@ export async function addKitchen(
         `;
 
         // Revalidate the path and redirect
-        revalidatePath('/kitchen');
-        redirect('/kitchen');
+        revalidatePath('/inventory/kitchen');
+        redirect('/inventory/kitchen');
     
 }
 
@@ -160,8 +160,8 @@ export async function addSale(
         `;
 
         // Revalidate the path and redirect
-        revalidatePath('/sales');
-        redirect('/sales');
+        revalidatePath('/inventory/sales');
+        redirect('/inventory/sales');
     
 }
 
@@ -172,8 +172,8 @@ export async function deleteSale(id: string) {
         WHERE id = ${id}
     `;
 
-    revalidatePath('/sales');
-    redirect('/sales');
+    revalidatePath('/inventory/sales');
+    redirect('/inventory/sales');
 }
 
 // supplies
@@ -209,8 +209,8 @@ export async function addSupply(
         `;
 
         // Revalidate the path and redirect
-        revalidatePath('/supplies');
-        redirect('/supplies');
+        revalidatePath('/inventory/supplies');
+        redirect('/inventory/supplies');
     
 }
 
@@ -221,6 +221,6 @@ export async function deleteSupply(id: string) {
         WHERE id = ${id}
     `;
 
-    revalidatePath('/supplies');
-    redirect('/supplies');
+    revalidatePath('/inventory/supplies');
+    redirect('/inventory/supplies');
 }
