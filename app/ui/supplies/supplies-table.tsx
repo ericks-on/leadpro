@@ -22,7 +22,7 @@ export default function SuppliesTable({ items }: { items: Supply[] }) {
                         {items.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <td className="px-4 py-3 text-sm text-gray-500">{item.product}gh</td>
+                                    <td className="px-4 py-3 text-sm text-gray-500">{item.product}</td>
                                     <td className="px-4 py-3 text-sm text-gray-500">{item.quantity}</td>
                                     <td className="px-4 py-3 text-sm text-gray-500">{item.price}</td>
                                     <td className="px-4 py-3 text-sm text-gray-500">

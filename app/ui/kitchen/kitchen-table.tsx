@@ -22,7 +22,7 @@ export default function KitchenTable({ items }: { items: Kitchen[] }) {
                         {items.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <td className="px-4 py-3 text-sm text-gray-500">{item.rawproduct}gh</td>
+                                    <td className="px-4 py-3 text-sm text-gray-500">{item.rawproduct}</td>
                                     <td className="px-4 py-3 text-sm text-gray-500">{item.type}</td>
                                     <td className="px-4 py-3 text-sm text-gray-500">{item.quantity}</td>
                                     <td className="px-4 py-3 text-sm text-gray-500">
